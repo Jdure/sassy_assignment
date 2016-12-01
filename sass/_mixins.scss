@@ -1,0 +1,40 @@
+//This is my MIXINS
+
+// -- Equal Spaced Columns -- //
+// Number of Columns - First Column
+// Remaining Number of Columns * Margin Spacing
+// Container Width - Total Margin Spacing
+// Remaining Width / Total Number of Columns
+
+@mixin equalSpaced( $num_of_cols, $gutter, $width:100%  ){
+  width: ( $width - ( $gutter * ($num_of_cols - 1) ) ) / $num_of_cols;
+  margin-left: $gutter;
+  float: left;
+  // Remove Spacing from First Child
+  &:first-child{
+    margin-left: 0;
+  }
+  
+}
+
+@mixin bp($breakpoint) {
+    
+     //Variables for my Media Queries
+    $breakpoint-mobile: 701px;
+    $breakpoint-small: 900px;
+    $breakpoint-medium: 901px;
+    $breakpoint-large: 1400px;
+    $breakpoint-xl: 1401px;
+    
+    
+  @if $breakpoint == mobile {
+    @media (min-width: 701px) and (max-width: 900px)  { @content; }
+  } 
+  @else if $breakpoint == medium {
+    @media (min-width: 901px) and (max-width: 1400px)  { @content; }
+  }
+
+    @else if $breakpoint == xl {
+    @media (min-width: 1401px)  { @content; }
+  }
+}
